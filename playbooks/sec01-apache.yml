@@ -1,0 +1,12 @@
+##################################################
+# DO Community Playbooks: Apache on Ubuntu 18.04
+##################################################
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Stop Apache
+      service:
+        name: apache2
+        state: stop
