@@ -1,12 +1,14 @@
-##################################################
-# DO Community Playbooks: Apache on Ubuntu 18.04
-##################################################
 ---
-- hosts: all
-  become: true
-
-  tasks:
-    - name: Stop Apache
-      service:
-        name: apache2
-        state: stop
+  - name: Playbook
+    hosts: webservers
+    become: yes
+    become_user: root
+    tasks:
+      - name: ensure apache is at the latest version
+        yum:
+          name: httpd
+          state: latest
+      - name: ensure apache is running
+        service:
+          name: httpd
+          state: started
